@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atlas Merik - Catálogo</title>
+
+  <style>
+    :root{
+      --bg: #e9e9e9;
+      --container: 90%;
+
+      --topbar: #2c2c2c;
+      --topbarText: #f2f2f2;
+
+      --cardBorder: #cfcfcf;
+      --muted: #6b6b6b;
+
+      --btn: #ffffff;
+      --btnHover: #8e1313;
+
+      --servicesBg: #c8d168;
+      --footer: #1f1f1f;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    
+
+
+    body{
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: #222;
+    }
+
+    .container{
+      width: min(var(--container), calc(100% - 24px));
+      margin: 0 auto;
+    }
+
+    /* Topbar */
+    .topbar{
+      background: var(--topbar);
+      color: var(--topbarText);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .topbar__inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand__logo{
+      width: 40px;
+      height: 28px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #d11d1d, #6b0f0f);
+      box-shadow: 0 1px 0 rgba(255,255,255,.12) inset;
+    }
+    .brand__name{
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .brand__tagline{
+      font-size: 12px;
+      opacity: .85;
+      margin-top: 2px;
+    }
+
+    .menu{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+    .menu a{
+      color: var(--topbarText);
+      text-decoration: none;
+      opacity: .92;
+    }
+    .menu a:hover{ opacity: 1; text-decoration: underline; }
+    .menu__sep{ opacity: .55; }
+
+    /* Hero */
+    .hero{ padding: 0px 0 0; }
+    .hero__banner{
+      height: 30px;
+
+    }
+
+    /* Main content area */
+    .main{ padding: 14px 0 0; }
+
+    .page-title{
+      text-align: center;
+      font-size: 30px;
+      margin: 10px 0 6px;
+      font-weight: 400;
+      color: 000000;
+    }
+
+    .page-intro{
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+      max-width: 90%;
+      margin: 0 auto 16px;
+      line-height: 1.5;
+    }
+
+    /* Catalog grid */
+    .catalog{ padding: 6px 0 18px; }
+
+    .catalog__grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .card{
+      background: #fff;
+      border: 1px solid var(--cardBorder);
+      border-radius: 3px;
+      padding: 8px;
+      box-shadow: 0 1px 0 rgba(0,0,0,.04);
+    }
+
+    .card__img{
+      height: 95px;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 3px;
+      background: linear-gradient(135deg, #d7d7d7, #f4f4f4);
+    }
+
+    .card__title{
+      margin: 8px 0 6px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #2b2b2b;
+    }
+
+    .card__label{
+      font-size: 14px;
+      color: #2b2b2b;
+      font-weight: 700;
+      margin: 6px 0 6px;
+    }
+
+    .card__specs{
+      margin: 0 0 10px;
+      padding-left: 25px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .btn{
+      display: block;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: var(--btn);
+      color: #ff0000;
+      text-decoration: none;
+      border: 1px solid rgba(255,0,0,.50);
+      text-align: center;
+
+    }
+    .btn:hover{ background: rgba(255,0,0,.90);
+     color: #ffffff;
+    }
+     
+    /* Services yellow section */
+    .services{
+      background: var(--servicesBg);
+      border-top: 1px solid rgba(0,0,0,.15);
+      border-bottom: 1px solid rgba(0,0,0,.15);
+      padding: 18px 0;
+    }
+
+    .services li {
+    	padding: 10px 0;
+    }
+    
+    .services__title{
+      text-align: center;
+      margin: 0 0 14px;
+      font-size: 28px;
+      font-weight: 500;
+    }
+
+    .services__content{
+      display: grid;
+
+      gap: 18px;
+      align-items: start;
+    }
+
+    .services__list{
+      margin: 0;
+      padding-left: 25px;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .services__text{
+      font-size: 12px;
+      line-height: 1.6;
+      color: #2b2b2b;
+    }
+
+    /* Footer */
+    .footer{
+      background: var(--footer);
+      color: #dcdcdc;
+      padding: 14px 0;
+    }
+
+    .footer__inner{ text-align: center; }
+
+    .footer__line{
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .footer__line--small{
+      font-size: 12px;
+      opacity: .85;
+    }
+
+    /* Responsivo */
+    @media (max-width: 980px){
+      .catalog__grid{ grid-template-columns: repeat(2, 1fr); }
+      .services__content{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px){
+      .catalog__grid{ grid-template-columns: 1fr; }
+      .menu{ font-size: 12px; gap: 8px; }
+      .hero__banner{ height: 110px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Topo -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__text">
+        <img src="Imagens/Logo.png">
+
+        </div>
+      </div>
+
+      <nav class="menu" aria-label="Menu principal">
+        <a href="#">Fale conosco</a>
+        <span class="menu__sep">•</span>
+        <a href="#">Início</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner / Hero -->
+  <section class="hero">
+  <img src="Imagens/img_topo.jpg" width="100%">
+  </section>
+
+  <!-- Conteúdo -->
+  <main class="main">
+    <div class="container">
+      <h1 class="page-title">Atlas Merik - 22 Anos de Excelência no Mercado Automotivo de luxo</h1>
+      <p class="page-intro">
+        Seja bem-vindo à Atlas Merik, um santuário exclusivo para os amantes de automóveis de elite. Situada na prestigiada Av. Europa, em São Paulo, somos a quintessência da excelência automotiva de luxo, há mais de duas décadas. Aqui, a sua paixão por carros é transformada em uma experiência de qualidade incomparável e satisfação absoluta. Em cada detalhe, em cada curva, em cada revolução do motor, a Atlas Merik é sinônimo de sofisticação e desempenho excepcional, dedicada a um público exigente e distinto. Descubra um mundo onde carros não são apenas máquinas, mas obras de arte em movimento, curadoria meticulosa para os verdadeiros conhecedores.
+      </p>
+
+      <!-- Grade de veículos -->
+      <section class="catalog" aria-label="Catálogo">
+        <div class="catalog__grid">
+
+          <!-- CARD 1 -->
+          <article class="card">
+            <img src="Imagens/car_1.jpg" width="100%">
+            <h3 class="card__title">Ferrari SUV S250</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 7.400.000</li>
+              <li>Ano: modelo: 2022/2023</li>
+              <li>KM: 1.300 Km</li>
+              <li>Cor: Vermelho cereja</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="card">
+            <img src="Imagens/car_2.jpg" width="100%">
+            <h3 class="card__title">Ferrari 812 GTS</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 6.100.000</li>
+              <li>Ano: modelo: 2022/2023</li>
+              <li>KM: 9.050 Km</li>
+              <li>Cor: Vermelho cereja</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="card">
+            <img src="Imagens/car_3.jpg" width="100%">
+            <h3 class="card__title">Hummer EV SUV</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 590.000</li>
+              <li>Ano: modelo: 2023/2024</li>
+              <li>KM: 18.300 Km</li>
+              <li>Cor: Preto</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+          <!-- CARD 4 -->
+          <article class="card">
+            <img src="Imagens/car_4.jpg" width="100%">
+            <h3 class="card__title">Ferrari Green 488</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 6.100.000</li>
+              <li>Ano: modelo: 2022/2023</li>
+              <li>KM: 9.050 Km</li>
+              <li>Cor: Vermelho cereja</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+          <!-- CARD 5 -->
+          <article class="card">
+            <img src="Imagens/car_5.jpg" width="100%">
+            <h3 class="card__title">Lamborghini Urus</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 6.100.000</li>
+              <li>Ano: modelo: 2025/2026</li>
+              <li>KM: 9.050 Km</li>
+              <li>Cor: Vermelho cereja</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+          <!-- CARD 6 -->
+           <article class="card">
+            <img src="Imagens/car_6.jpg" width="100%">
+            <h3 class="card__title">Mercedes S680</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 6.100.000</li>
+              <li>Ano: modelo: 2022/2022</li>
+              <li>KM: 9.050 Km</li>
+              <li>Cor: Vermelho cereja</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+          <!-- CARD 7 -->
+          <article class="card">
+            <img src="Imagens/car_7.jpg" width="100%">
+            <h3 class="card__title">Range Rover Evoque</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 6.100.000</li>
+              <li>Ano: modelo: 2023/2024</li>
+              <li>KM: 9.050 Km</li>
+              <li>Cor: Vermelho cereja</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+          <!-- CARD 8 -->
+          <article class="card">
+            <img src="Imagens/car_8.jpg" width="100%">
+            <h3 class="card__title">Tesla Model S</h3>
+            <div class="card__label">Características do veículo</div>
+            <ul class="card__specs">
+              <li>Preço: R$ 6.100.000</li>
+              <li>Ano: modelo: 2023/2023</li>
+              <li>KM: 9.050 Km</li>
+              <li>Cor: Vermelho cereja</li>
+            </ul>
+            <a class="btn" href="#">Mais Detalhes</a>
+          </article>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Faixa amarela (serviços) -->
+    <section class="services" aria-label="Serviços">
+      <div class="container">
+        <h2 class="services__title">Confira nossos serviços</h2>
+
+        <div class="services__content">
+          <ul class="services__list">
+            <li><strong>Seguro:</strong> Oferecemos a conveniência de receber o seu veículo personalizado com uma variedade de opções, como aplicação de película filmada, anti vandalismo, envelopamento de cores parcial ou total, adesivos, personalização de rodas, bancos de couro, instalação de tecnologia (chip, pedal, limitador, DVDs, TV digital, GPS), importação de peças, rodas esportivas, escapamentos esportivos, entre outros. A personalização é realizada antes da entrega do veículo, permitindo que os carros sejam retirados 100% customizados, proporcionando exclusividade aos clientes. Entre em contato com nossos vendedores para adquirir o seu veículo personalizado, refletindo sua individualidade.</li>
+            
+            <li><strong>Blindagem:</strong> Ainda não existe nenhum tipo de teste de qualidade para as blindadoras, mas para fabricar materiais à prova de bala, as empresas precisam passar por testes balísticos realizados pelas Forças Armadas. Apenas as empresas que possuem o Título de Registro emitido pelo exército têm autorização para comercializar os produtos. E as blindadoras também precisam ser registradas no Exército e obter autorização para blindar e comercializar cada veículo (Certificado de Registro – CR). Verificar o Título de Registro e o CR é o primeiro passo para escolha da empresa.</li>
+            
+            <li><strong>Despachante:</strong> Nossa empresa providencia todos os serviços de desembaraço de documentos e processos relativos ao seu automóvel. Nosso objetivo é proporcionar rapidez e confiabilidade para atender necessidades como, por exemplo, o primeiro emplacamento e o licenciamento. Também podemos prestar assessoria (in loco) referente a documentação de veículos e legislação de trânsito. Todos os veículos blindados devem ter registro no Exército Brasileiro e na Polícia Civíl: Registro de veiculo blindado junto à Policia Civil, conforme o Decreto nº59.218/2013. Atualização do cadastro do veículo blindado junto ao Departamento Estadual de Trânsito (DETRAN), de acordo com a Deliberação 75/2008 e a Deliberação 78/2009. Transferência de propriedade do veículo blindado junto a Secretaria de Segurança Pública do estado de São Paulo. Para saber mais, preencha o formulário abaixo:</li>
+            
+            <li><strong>Despachante:</strong> Oferecemos a conveniência de receber o seu veículo personalizado com uma variedade de opções, como aplicação de película filmada, anti vandalismo, envelopamento de cores parcial ou total, adesivos, personalização de rodas, bancos de couro, instalação de tecnologia (chip, pedal, limitador, DVDs, TV digital, GPS), importação de peças, rodas esportivas, escapamentos esportivos, entre outros. A personalização é realizada antes da entrega do veículo, permitindo que os carros sejam retirados 100% customizados, proporcionando exclusividade aos clientes. Entre em contato com nossos vendedores para adquirir o seu veículo personalizado, refletindo sua individualidade.</li>
+          </ul>
+
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__line">
+      Todas as imagens e textos utilizados neste site foram gerados com o auxílio da Inteligência Artificial (IA)
+
+
+      </div>
+      <div class="footer__line footer__line--small">Advertência: Este Site foi construído para fins didáticos. Dados técnicos, imagens, textos e referências de ordens diversas foram utilizados apenas com o objetivo de possibilitar ao leitor a construção do projeto que está proposto neste módulo. As informações aqui exibidas não refletem, em nenhum momento, a realidade.</div>
+    </div>
+  </footer>
+  
+  
+  <P>.</P> <P>.</P> <P>.</P>
+  
+</body>
+</html>
+
+
+Flexbox
+
